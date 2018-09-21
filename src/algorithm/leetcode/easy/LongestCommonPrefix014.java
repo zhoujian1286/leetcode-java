@@ -23,6 +23,32 @@ package algorithm.leetcode.easy;
  */
 public class LongestCommonPrefix014 {
     public String longestCommonPrefix(String[] strs) {
-        return null;
+        if (strs == null || strs.length == 0) {
+            return "";
+        }
+        char[][] chars = new char[strs.length][];
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < chars.length; i++) {
+            chars[i] = strs[i].toCharArray();
+            if (chars[i].length < min) {
+                min = chars[i].length;
+            }
+        }
+        StringBuilder val = new StringBuilder();
+        for (int j = 0; j < min; j++) {
+            char first = chars[0][j];
+            boolean same = true;
+            for (char[] aChar : chars) {
+                if (first != aChar[j]) {
+                    same = false;
+                }
+            }
+            if (!same) {
+                return val.toString();
+            } else {
+                val.append(first);
+            }
+        }
+        return val.toString();
     }
 }
